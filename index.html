@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Klik Target</title>
 
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #222;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #gameArea {
+            width: 90%;
+            max-width: 500px;
+            height: 500px;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        #target {
+            width: 60px;
+            height: 60px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background: limegreen;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎯 Game Klik Target</h1>
+
+    <h2>Skor: <span id="score">0</span></h2>
+
+    <button onclick="startGame()">Mulai Game</button>
+
+    <div id="gameArea">
+        <div id="target"></div>
+    </div>
+
+    <script>
+        let score = 0;
+
+        const target = document.getElementById("target");
+        const gameArea = document.getElementById("gameArea");
+        const scoreText = document.getElementById("score");
+
+        target.onclick = function() {
+            score++;
+            scoreText.textContent = score;
+
+            let x = Math.random() * (gameArea.clientWidth - 60);
+            let y = Math.random() * (gameArea.clientHeight - 60);
+
+            target.style.left = x + "px";
+            target.style.top = y + "px";
+        };
+
+        function startGame() {
+            score = 0;
+            scoreText.textContent = score;
+
+            target.style.left = "200px";
+            target.style.top = "200px";
+        }
+    </script>
+
+</body>
+</html>
